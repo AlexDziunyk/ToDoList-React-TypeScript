@@ -7,21 +7,24 @@ interface ToDoItemProps {
   id: number;
   text: string;
   handleDeleteTodo: (id:number) => void;
+  handleDoneTodo: (id: number) => void;
+  isDone: boolean;
 }
 
-function TodoItem({id, text, handleDeleteTodo}: ToDoItemProps) {
+function TodoItem({id, text, handleDoneTodo, handleDeleteTodo, isDone}: ToDoItemProps) {
 
-  const [isTodoDone, setIsTodoDone] = useState<boolean>(false);
+  const [isTodoDone, setIsTodoDone] = useState<boolean>(isDone);
 
-  const handleDoneTodo = () => {
+  const handleDoneTodoLocal = () => {
     setIsTodoDone(!isTodoDone);
+    handleDoneTodo(id)
   }
 
   return (
     <div className={`todo-item ${isTodoDone ? 'todo-item_done' : ''}`}>
       <p className={`todo-item__text ${isTodoDone ? 'todo-item__text_done' : ''}`}>{text}</p>
       <div className="todo-item__buttons">
-        <button onClick={handleDoneTodo} className="todo-item__button todo-item__button_done">
+        <button onClick={handleDoneTodoLocal} className="todo-item__button todo-item__button_done">
           <RxCheck size={25} />
         </button>
         <button onClick={() => handleDeleteTodo(id)} className="todo-item__button todo-item__button_delete">
