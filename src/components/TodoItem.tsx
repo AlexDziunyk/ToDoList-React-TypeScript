@@ -28,7 +28,7 @@ function TodoItem({id, text, handleDoneTodo, handleDeleteTodo, isDone}: ToDoItem
           <RxCheck size={25} />
         </button>
         <button onClick={() => handleDeleteTodo(id)} className="todo-item__button todo-item__button_delete">
-          <RxCross2 size={25} />
+          <RxCross2 size={20} />
         </button>
       </div>
     </div>
